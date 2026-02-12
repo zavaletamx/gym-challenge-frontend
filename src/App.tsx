@@ -13,35 +13,71 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuth();
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-  return children;
+	const { user } = useAuth();
+	if (!user) {
+		return (
+			<Navigate
+				to='/login'
+				replace
+			/>
+		);
+	}
+	return children;
 };
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-              <Route index element={<Dashboard />} />
-              <Route path="checkin" element={<Checkin />} />
-              <Route path="history" element={<History />} />
-              <Route path="history/:id" element={<Detail />} />
-              <Route path="ranking" element={<Ranking />} />
-              <Route path="admin" element={<Admin />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<AuthProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route
+							path='/login'
+							element={<Login />}
+						/>
+						<Route
+							path='/register'
+							element={<Register />}
+						/>
+						<Route
+							path='/'
+							element={
+								<ProtectedRoute>
+									<Layout />
+								</ProtectedRoute>
+							}
+						>
+							<Route
+								index
+								element={<Dashboard />}
+							/>
+							<Route
+								path='checkin'
+								element={<Checkin />}
+							/>
+							<Route
+								path='history'
+								element={<History />}
+							/>
+							<Route
+								path='history/:id'
+								element={<Detail />}
+							/>
+							<Route
+								path='ranking'
+								element={<Ranking />}
+							/>
+							<Route
+								path='admin'
+								element={<Admin />}
+							/>
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</AuthProvider>
+		</ThemeProvider>
+	);
 }
 
 export default App;
