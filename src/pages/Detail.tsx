@@ -77,7 +77,7 @@ const Detail = () => {
             <Paper sx={{ p: 2 }}>
                 <Typography variant="subtitle1">Evidence Photo</Typography>
                 <img
-                    src={`https://gym-challenge-backend-production.up.railway.app${chekin.imageUrl}`}
+                    src={`https://api.kbfunnys.com${chekin.imageUrl}`}
                     alt="Evidence"
                     style={{ width: '100%', maxHeight: 400, objectFit: 'contain' }}
                 />
